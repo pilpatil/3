@@ -142,7 +142,7 @@ _
 systemctl enable --now logrotate.timer
 logrotate -d /etc/logrotate.conf
 
-## 7. Мониторинг (Prometheus + Grafana)
+## 7. Мониторинг (Prometheus + Grafana) на HQ-SRV
 Запуск node
 exporter на клиентских машинах:
 _
@@ -167,7 +167,7 @@ systemctl enable --now prometheus-node_exporter
 - Выбираем службу для дашборда Prometheus. Нажимаем Импорт.
 - Заходим в меню на 3 точки, выбираем редактировать и переименовываем заголовок на "Информация по серверам"
 
-## 8. Инвентаризация через Ansible
+## 8. Инвентаризация через Ansible на BR-SRV
 mount /dev/sr0 /mnt/
 cp /mnt/playbook/get_hostname_address.yml /etc/ansible/
 chmod +x /etc/ansible/get_hostname_address.yml
@@ -189,7 +189,7 @@ ansible-playbook /etc/ansible/get_hostname_address.yml
 Проверка:
 cat /etc/ansible/PC-INFO/hq-srv.yml
 
-## 9. Защита SSH с помощью Fail2ban
+## 9. Защита SSH с помощью Fail2ban на HQ-SRV
 Редактируем файл конфигурации (можно создать `/etc/fail2ban/jail.local` или править `jail.conf`):
 nano /etc/fail2ban/jail.conf
 Находим секцию `[sshd]` и приводим к виду:
